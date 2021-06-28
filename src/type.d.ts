@@ -16,7 +16,7 @@ interface ITask {
   title: string;
   body: string;
   createDate: Date;
-  ExpireDate: ExpireDate;
+  expireDate: ExpireDate;
   status: TaskStatus;
   priority: TaskPriority;
 }

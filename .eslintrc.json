@@ -8,8 +8,7 @@
         "airbnb",
         "plugin:@typescript-eslint/recommended",
         "prettier/prettier",
-        "prettier/react",
-        "prettier/@typescript-eslint",
+        "prettier",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",

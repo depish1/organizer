@@ -4,23 +4,40 @@ const initialState: TasksState = {
   tasks: [],
 };
 
-const reducer = (state: TasksState = initialState, action: TasksAction): ArticleState => {
+const reducer = (state: TasksState = initialState, action: TasksAction): TasksState => {
   switch (action.type) {
-    case actionTypes.ADD_ARTICLE:
-      const newArticle: IArticle = {
-        id: Math.random(), // not really unique
-        title: action.article.title,
-        body: action.article.body,
+    case actionTypes.ADD_TASK:
+      const newTask: ITask = {
+        taskId: action.task!.taskId,
+        uid: action.task!.uid,
+        title: action.task!.title,
+        body: action.task!.body,
+        createDate: action.task!.createDate,
+        expireDate: action.task!.expireDate,
+        status: action.task!.status,
+        priority: action.task!.priority,
       };
       return {
-        ...state,
-        articles: state.articles.concat(newArticle),
+        tasks: [...state.tasks, newTask],
       };
-    case actionTypes.REMOVE_ARTICLE:
-      const updatedArticles: IArticle[] = state.articles.filter((article) => article.id !== action.article.id);
+
+    case actionTypes.REMOVE_TASK:
       return {
-        ...state,
-        articles: updatedArticles,
+        tasks: state.tasks.filter((t) => t.taskId !== action.taskId),
+      };
+    case actionTypes.REMOVE_TASK:
+      const updatedTask: ITask = {
+        taskId: action.task!.taskId,
+        uid: action.task!.uid,
+        title: action.task!.title,
+        body: action.task!.body,
+        createDate: action.task!.createDate,
+        expireDate: action.task!.expireDate,
+        status: action.task!.status,
+        priority: action.task!.priority,
+      };
+      return {
+        tasks: [...state.tasks.filter((t) => t.taskId !== action.taskId), updatedTask],
       };
   }
   return state;
