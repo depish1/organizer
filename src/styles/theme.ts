@@ -2,9 +2,9 @@ export const theme = {
   colors: {
     white: '#ffffff',
     black: '#0b090a',
-    grey: '#d3d3d3',
-    special: '#e5383b',
-    specialHover: '#ba181b',
+    grey: '#6b696a',
+    special: '#0466c8',
+    specialHover: '#0353a4',
   },
   headerHeight: '4rem',
 } as const;
