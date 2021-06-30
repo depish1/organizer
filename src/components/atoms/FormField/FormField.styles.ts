@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledFormField = styled.label`
-  margin: 2rem 0;
+  margin-top: 2rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -25,15 +25,15 @@ export const StyledFormField = styled.label`
   }
 
   input {
-    height: 2.5rem;
+    height: 2rem;
     display: block;
     margin-top: 0.5rem;
     padding: 0 0.5rem;
     font-size: 1.5rem;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.colors.grey};
-    border-radius: 0.5rem;
-
+    border: 1px solid ${({ theme }) => theme.colors.black};
+    border-radius: 0.25rem;
+    background: transparent;
     &:focus {
       border: 2px solid ${({ theme }) => theme.colors.special};
     }

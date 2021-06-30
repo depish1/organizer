@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const StyledForm = styled.form`
   background-color: ${({ theme }) => theme.colors.white};
-
   color: ${({ theme }) => theme.colors.black};
   width: 400px;
   max-width: 100%;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 1rem;
-  border: 3px solid ${({ theme }) => theme.colors.special};
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 `;

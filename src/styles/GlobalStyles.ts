@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
     html {
         box-sizing: border-box;
     }
@@ -13,11 +13,11 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Open Sans', sans-serif;
     }
 
     a, button {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Open Sans', sans-serif;
     }
 `;
 

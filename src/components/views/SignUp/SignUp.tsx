@@ -4,20 +4,21 @@ import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
 import Headline from 'components/atoms/Headline/Headline';
 import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/RedirectFormParagraph';
-import { StyledSignIn } from './SignIn.styles';
+import { StyledSignUp } from './SignUp.styles';
 
-const SignIn: FunctionComponent = () => {
+const SignUp: FunctionComponent = () => {
   return (
-    <StyledSignIn>
+    <StyledSignUp>
       <Form>
-        <Headline text="Zaloguj się" />
+        <Headline text="Zarejestruj się" />
         <FormField id="email" label="Email:" type="email" />
         <FormField id="password" label="Hasło:" type="password" />
+        <FormField id="confirmPassword" label="Potwierdź hasło:" type="password" />
         <Button />
-        <RedirectFormParagraph paragraphText="Nie masz jeszcze konta?" linkText="Zarejestruj się" linkPath="#" />
+        <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="#" />
       </Form>
-    </StyledSignIn>
+    </StyledSignUp>
   );
 };
 
-export default SignIn;
+export default SignUp;
