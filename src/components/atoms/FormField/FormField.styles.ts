@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const StyledFormField = styled.label`
+export const StyledFormField = styled.div`
   margin-top: 2rem;
   width: 100%;
   display: flex;
   flex-direction: column;
 
-  span {
+  label {
     width: max-content;
     font-weight: bold;
     font-size: 1rem;
@@ -25,7 +25,7 @@ export const StyledFormField = styled.label`
   }
 
   input {
-    height: 2rem;
+    height: 2.2rem;
     display: block;
     margin-top: 0.5rem;
     padding: 0 0.5rem;
@@ -37,5 +37,9 @@ export const StyledFormField = styled.label`
     &:focus {
       border: 2px solid ${({ theme }) => theme.colors.special};
     }
+  }
+
+  span.error {
+    color: ${({ theme }) => theme.colors.special};
   }
 `;

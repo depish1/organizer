@@ -8,4 +8,8 @@ export const StyledForm = styled.form`
   padding: 3rem;
   border-radius: 1rem;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+  @media only screen and (max-width: 500px) {
+    padding: 3rem 2rem;
+  }
 `;

@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { StyledForm } from './Form.styles';
 
-const Form: FunctionComponent = ({ children }) => {
-  return <StyledForm>{children}</StyledForm>;
+interface Props {
+  children: React.ReactNode;
+  onSubmit: any;
+}
+
+const Form: FunctionComponent<Props> = ({ children, onSubmit }) => {
+  return <StyledForm onSubmit={onSubmit}>{children}</StyledForm>;
 };
 
 export default Form;

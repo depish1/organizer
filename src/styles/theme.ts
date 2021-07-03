@@ -1,10 +1,10 @@
 export const theme = {
   colors: {
-    white: '#f6f6f6',
-    bg: '#e8e8e8',
-    black: '#1f1f1d',
+    white: '#edf2f4',
+    bg: '#8d99ae',
+    black: '#2b2d42',
     special: '#ef233c',
-    specialHover: '#d80032',
+    specialHover: '#d90429',
   },
   headerHeight: '4rem',
 } as const;

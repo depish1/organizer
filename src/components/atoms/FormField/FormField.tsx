@@ -4,14 +4,14 @@ import { StyledFormField } from './FormField.styles';
 interface Props {
   label: string;
   id: string;
-  type: string;
+  children: React.ReactNode;
 }
 
-const FormField: FunctionComponent<Props> = ({ label, id, type }) => {
+const FormField: FunctionComponent<Props> = ({ label, id, children }) => {
   return (
-    <StyledFormField htmlFor={id}>
-      <span>{label}</span>
-      <input type={type} id={id} name={id} />
+    <StyledFormField>
+      <label htmlFor={id}>{label}</label>
+      {children}
     </StyledFormField>
   );
 };
