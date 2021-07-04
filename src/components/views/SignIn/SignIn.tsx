@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
 import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
@@ -7,10 +7,13 @@ import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/Redire
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { firebaseAuth } from 'utils/firebase/config';
+import firebase from 'utils/firebase/config';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import actions from 'utils/store/user/actionCreators';
+import { redirect } from 'utils/helpers';
+import { useHistory } from 'react-router-dom';
+import { RootState } from 'utils/store/store';
 import { StyledSignIn } from './SignIn.styles';
 
 interface IFormInputs {
@@ -24,8 +27,16 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn: FunctionComponent = () => {
+  const uid = useSelector(({ user }: RootState) => user.uid);
+  const history = useHistory();
+  useEffect(() => {
+    if (uid) redirect('/tasks', history);
+  }, [uid, history]);
+
   const [authError, setAuthError] = useState<string | undefined>();
-  const dispatch: Dispatch<any> = useDispatch();
+
+  const dispatch: Dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -36,10 +47,10 @@ const SignIn: FunctionComponent = () => {
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
     try {
-      const response = await firebaseAuth().signInWithEmailAndPassword(email, password);
-      console.log(response);
+      const response = await firebase.auth().signInWithEmailAndPassword(email, password);
       const { user } = response;
       dispatch(actions.login(user!.uid));
+      redirect('/tasks', history);
     } catch (error) {
       setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
     }
@@ -59,7 +70,7 @@ const SignIn: FunctionComponent = () => {
         </FormField>
         <Button />
         {authError ? <span className="formError">{authError}</span> : null}
-        <RedirectFormParagraph paragraphText="Nie masz jeszcze konta?" linkText="Zarejestruj się" linkPath="#" />
+        <RedirectFormParagraph paragraphText="Nie masz jeszcze konta?" linkText="Zarejestruj się" linkPath="/signup" />
       </Form>
     </StyledSignIn>
   );

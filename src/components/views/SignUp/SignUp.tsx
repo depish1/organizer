@@ -7,10 +7,12 @@ import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/Redire
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { firebaseAuth } from 'utils/firebase/config';
+import firebase from 'utils/firebase/config';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import actions from 'utils/store/user/actionCreators';
+import { redirect } from 'utils/helpers';
+import { useHistory } from 'react-router-dom';
 import { StyledSignUp } from './SignUp.styles';
 
 interface IFormInputs {
@@ -30,7 +32,8 @@ const validationSchema = yup.object().shape({
 
 const SignUp: FunctionComponent = () => {
   const [authError, setAuthError] = useState<string | undefined>();
-  const dispatch: Dispatch<any> = useDispatch();
+  const dispatch: Dispatch = useDispatch();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -41,9 +44,10 @@ const SignUp: FunctionComponent = () => {
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
     try {
-      const response = await firebaseAuth().createUserWithEmailAndPassword(email, password);
+      const response = await firebase.auth().createUserWithEmailAndPassword(email, password);
       const { user } = response;
       dispatch(actions.login(user!.uid));
+      redirect('/tasks', history);
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         setAuthError('Nieprawidłowy email lub hasło. Spróbuj ponownie.');
@@ -58,7 +62,7 @@ const SignUp: FunctionComponent = () => {
         <Headline text="Zarejestruj się" />
         <FormField id="email" label="Email:">
           <input {...register('email')} type="text" name="email" id="email" />
-          <span className="error">errors.email?.message</span>
+          <span className="error">{errors.email?.message}</span>
         </FormField>
         <FormField id="password" label="Hasło:">
           <input {...register('password')} type="password" name="password" id="password" />
@@ -70,7 +74,7 @@ const SignUp: FunctionComponent = () => {
         </FormField>
         <Button />
         {authError ? <span className="formError">{authError}</span> : null}
-        <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="#" />
+        <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="/signin" />
       </Form>
     </StyledSignUp>
   );

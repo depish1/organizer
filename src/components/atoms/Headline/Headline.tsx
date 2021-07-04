@@ -15,7 +15,7 @@ interface Props {
   size?: headlineSelectors;
 }
 
-const Headline: FunctionComponent<Props> = ({ text, size = 'h2' }) => {
+const Headline: FunctionComponent<Props> = ({ text }) => {
   return <StyledHeadline>{text}</StyledHeadline>;
 };
 

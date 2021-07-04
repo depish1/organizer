@@ -3,7 +3,7 @@ import { StyledForm } from './Form.styles';
 
 interface Props {
   children: React.ReactNode;
-  onSubmit: any;
+  onSubmit: () => Promise<void>;
 }
 
 const Form: FunctionComponent<Props> = ({ children, onSubmit }) => {

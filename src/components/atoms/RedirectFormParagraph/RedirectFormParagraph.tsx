@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { StyledRedirectFormParagraph } from './RedirectFormParagraph.styles.';
 
 interface Props {
@@ -11,7 +12,7 @@ const RedirectFormParagraph: FunctionComponent<Props> = ({ paragraphText, linkTe
   return (
     <StyledRedirectFormParagraph>
       <span>{paragraphText}</span>
-      <a href={linkPath}>{linkText}</a>
+      <Link to={linkPath}>{linkText}</Link>
     </StyledRedirectFormParagraph>
   );
 };
