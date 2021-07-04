@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
     html {
         box-sizing: border-box;
     }
@@ -13,11 +13,11 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
     }
 
     a, button {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
     }
 `;
 

@@ -29,6 +29,7 @@
         "@typescript-eslint/no-use-before-define": ["error"],
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
         "react/jsx-props-no-spreading": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
@@ -57,7 +58,7 @@
             "trailingComma": "es5",
             "semi": true
             }]
-
+        
     },
     "settings": {
         "import/resolver": {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
 import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
@@ -7,6 +7,10 @@ import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/Redire
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { firebaseAuth } from 'utils/firebase/config';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import actions from 'utils/store/user/actionCreators';
 import { StyledSignUp } from './SignUp.styles';
 
 interface IFormInputs {
@@ -25,6 +29,8 @@ const validationSchema = yup.object().shape({
 });
 
 const SignUp: FunctionComponent = () => {
+  const [authError, setAuthError] = useState<string | undefined>();
+  const dispatch: Dispatch<any> = useDispatch();
   const {
     register,
     handleSubmit,
@@ -33,8 +39,18 @@ const SignUp: FunctionComponent = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data: IFormInputs): void => {
-    console.log(data);
+  const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
+    try {
+      const response = await firebaseAuth().createUserWithEmailAndPassword(email, password);
+      const { user } = response;
+      dispatch(actions.login(user!.uid));
+    } catch (error) {
+      if (error.code === 'auth/wrong-password') {
+        setAuthError('Nieprawidłowy email lub hasło. Spróbuj ponownie.');
+      } else {
+        setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
+      }
+    }
   };
   return (
     <StyledSignUp>
@@ -53,6 +69,7 @@ const SignUp: FunctionComponent = () => {
           <span className="error">{errors.confirmPassword?.message}</span>
         </FormField>
         <Button />
+        {authError ? <span className="formError">{authError}</span> : null}
         <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="#" />
       </Form>
     </StyledSignUp>

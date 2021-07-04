@@ -4,7 +4,7 @@ export const StyledHeadline = styled.h2`
   display: inline-block;
   width: max-content;
   color: ${({ theme }) => theme.colors.black};
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
   position: relative;
   z-index: 1;
@@ -13,8 +13,8 @@ export const StyledHeadline = styled.h2`
     z-index: -1;
     content: '';
     background-color: ${({ theme }) => theme.colors.special};
-    height: 40%;
-    width: 120%;
+    height: 30%;
+    width: 110%;
     bottom: 0px;
     left: 0px;
     position: absolute;
