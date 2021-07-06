@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
 import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
+import Logo from 'components/atoms/Logo/Logo';
 import Headline from 'components/atoms/Headline/Headline';
 import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/RedirectFormParagraph';
 import { useForm } from 'react-hook-form';
@@ -10,7 +11,7 @@ import * as yup from 'yup';
 import firebase from 'utils/firebase/config';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
-import actions from 'utils/store/user/actionCreators';
+import actions from 'utils/store/actions';
 import { redirect } from 'utils/helpers';
 import { useHistory } from 'react-router-dom';
 import { StyledSignUp } from './SignUp.styles';
@@ -59,6 +60,7 @@ const SignUp: FunctionComponent = () => {
   return (
     <StyledSignUp>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Logo text="ORGANIZER" />
         <Headline text="Zarejestruj się" />
         <FormField id="email" label="Email:">
           <input {...register('email')} type="text" name="email" id="email" />

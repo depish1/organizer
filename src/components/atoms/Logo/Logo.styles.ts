@@ -1,36 +1,26 @@
 import styled from 'styled-components';
 
-export const LogoContainer = styled.div`
-  height: calc(${({ theme }) => theme.headerHeight} - 2rem);
-  margin: 1rem 0;
-  display: flex;
-  cursor: pointer;
+export const LogoContainer = styled.h1`
+  display: block;
+  font-weight: 400;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 6px;
   position: relative;
+  width: 100%;
+  z-index: 1;
 
-  .logo-text {
-    color: ${({ theme }) => theme.colors.white};
-    font-size: 2rem;
-    font-weight: bold;
-    position: relative;
-    z-index: 2;
-
-    .first-letter {
-      position: relative;
-
-      margin: 0 0.5rem;
-      &::before {
-        content: '';
-        display: block;
-        width: 2rem;
-        height: 2rem;
-        background-color: ${({ theme }) => theme.colors.special};
-        position: absolute;
-        border-radius: 0.8rem;
-        left: 50%;
-        top: 50%;
-        z-index: -1;
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-    }
+  &:before {
+    content: '';
+    display: block;
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background-color: ${({ theme }) => theme.colors.special};
+    z-index: -1;
   }
 `;

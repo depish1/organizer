@@ -10,10 +10,11 @@ import * as yup from 'yup';
 import firebase from 'utils/firebase/config';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import actions from 'utils/store/user/actionCreators';
+import actions from 'utils/store/actions';
 import { redirect } from 'utils/helpers';
 import { useHistory } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
+import Logo from 'components/atoms/Logo/Logo';
 import { StyledSignIn } from './SignIn.styles';
 
 interface IFormInputs {
@@ -59,6 +60,7 @@ const SignIn: FunctionComponent = () => {
   return (
     <StyledSignIn>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Logo text="ORGANIZER" />
         <Headline text="Zaloguj się" />
         <FormField id="email" label="Email:">
           <input {...register('email')} type="text" id="email" name="email" />

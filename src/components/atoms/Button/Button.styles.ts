@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledButton = styled.button`
   border: none;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   background-color: ${({ theme }) => theme.colors.special};
   color: ${({ theme }) => theme.colors.white};
   width: 100%;

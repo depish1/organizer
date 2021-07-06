@@ -5,7 +5,7 @@ import { StyledHeader } from './Header.styles';
 const Header: FunctionComponent = () => {
   return (
     <StyledHeader>
-      <Logo firstLetter="O" restOfText="rg" />
+      <Logo text="ORGANIZER" />
     </StyledHeader>
   );
 };

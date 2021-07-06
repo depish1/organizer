@@ -7,4 +7,5 @@ export const StyledSignUp = styled.div`
   width: 100%;
   min-height: calc(100vh - ${({ theme }) => theme.headerHeight});
   padding: 2rem;
+  color: ${({ theme }) => theme.colors.black};
 `;
