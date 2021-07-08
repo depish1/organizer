@@ -21,6 +21,11 @@ const reducer = (state: TasksState = initialState, action: TasksAction): TasksSt
         tasks: [...state.tasks, newTask],
       };
     }
+    case actionTypes.SET_TASKS: {
+      return {
+        tasks: [...action.tasks!],
+      };
+    }
 
     case actionTypes.REMOVE_TASK:
       return {

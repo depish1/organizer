@@ -7,6 +7,7 @@ import SignUp from 'components/views/SignUp/SignUp';
 import Tasks from 'components/views/Tasks/Tasks';
 import Home from 'components/views/Home';
 import Nav from 'components/organisms/Nav/Nav';
+import HamburgerButton from 'components/atoms/HamburgerButton/HamburgerButton';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { BackgroundWrapper, Container } from './App.styles';
 
@@ -17,6 +18,7 @@ const App: FunctionComponent = () => {
         <Container>
           <Nav />
           <BackgroundWrapper>
+            <HamburgerButton />
             <Switch>
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />

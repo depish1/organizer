@@ -11,7 +11,7 @@ import firebase from 'utils/firebase/config';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import actions from 'utils/store/actions';
-import { redirect } from 'utils/helpers';
+import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import Logo from 'components/atoms/Logo/Logo';
@@ -28,11 +28,11 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn: FunctionComponent = () => {
-  const uid = useSelector(({ user }: RootState) => user.uid);
+  const userId = useSelector(({ user }: RootState) => user.uid);
   const history = useHistory();
   useEffect(() => {
-    if (uid) redirect('/tasks', history);
-  }, [uid, history]);
+    if (userId) redirect('/tasks', history);
+  }, [userId, history]);
 
   const [authError, setAuthError] = useState<string | undefined>();
 
@@ -48,9 +48,10 @@ const SignIn: FunctionComponent = () => {
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
     try {
-      const response = await firebase.auth().signInWithEmailAndPassword(email, password);
-      const { user } = response;
-      dispatch(actions.login(user!.uid));
+      const responseUser = await firebase.auth().signInWithEmailAndPassword(email, password);
+      const { user } = responseUser;
+      const { uid } = user!;
+      dispatch(actions.login(uid));
       redirect('/tasks', history);
     } catch (error) {
       setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');

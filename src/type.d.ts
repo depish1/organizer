@@ -31,6 +31,7 @@ type TasksAction = {
   type: string;
   task?: ITask;
   taskId?: string;
+  tasks?: ITask[];
 };
 type UserAction = {
   type: string;

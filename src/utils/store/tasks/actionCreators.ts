@@ -4,6 +4,10 @@ const addTask = (task: ITask): TasksAction => ({
   type: actionTypes.ADD_TASK,
   task,
 });
+const setTasks = (tasks: ITask[]): TasksAction => ({
+  type: actionTypes.SET_TASKS,
+  tasks,
+});
 
 const removeTask = (taskId: string): TasksAction => ({
   type: actionTypes.REMOVE_TASK,
@@ -19,6 +23,7 @@ const actions = {
   addTask,
   removeTask,
   editTask,
+  setTasks,
 };
 
 export default actions;

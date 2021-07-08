@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
 import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
@@ -10,10 +10,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import firebase from 'utils/firebase/config';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import actions from 'utils/store/actions';
-import { redirect } from 'utils/helpers';
+import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory } from 'react-router-dom';
+import { RootState } from 'utils/store/store';
 import { StyledSignUp } from './SignUp.styles';
 
 interface IFormInputs {
@@ -32,9 +33,13 @@ const validationSchema = yup.object().shape({
 });
 
 const SignUp: FunctionComponent = () => {
+  const userId = useSelector(({ user }: RootState) => user.uid);
+  const history = useHistory();
+  useEffect(() => {
+    if (userId) redirect('/tasks', history);
+  }, [userId, history]);
   const [authError, setAuthError] = useState<string | undefined>();
   const dispatch: Dispatch = useDispatch();
-  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -47,7 +52,8 @@ const SignUp: FunctionComponent = () => {
     try {
       const response = await firebase.auth().createUserWithEmailAndPassword(email, password);
       const { user } = response;
-      dispatch(actions.login(user!.uid));
+      const { uid } = user!;
+      dispatch(actions.login(uid));
       redirect('/tasks', history);
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
