@@ -25,10 +25,10 @@ const Tasks: FunctionComponent = () => {
       <Link to="/signin">Logowanie</Link>
       <Link to="/signup">Rejestracja</Link>;
       {tasks
-        ? tasks.map(({ title, body }) => (
-            <p>
+        ? tasks.map(({ title, body, taskId }) => (
+            <div key={taskId}>
               {title};{body}
-            </p>
+            </div>
           ))
         : null}
     </>

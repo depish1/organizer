@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 const pseudoHeight = '20px';
 
-export const StyledNav = styled.nav`
+interface Props {
+  isOpen: boolean;
+  children: React.ReactNode;
+}
+
+export const StyledNav = styled.nav<Props>`
   width: 300px;
   height: 100vh;
   position: sticky;
@@ -15,8 +20,17 @@ export const StyledNav = styled.nav`
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
   padding: 3rem 0;
-  grid-column: 1;
   font-size: 1.2rem;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+    padding-top: 5rem;
+    left: ${(props) => (props.isOpen ? '0' : '-100%')};
+    top: ${(props) => (props.isOpen ? '0' : '-100vh')};
+    z-index: 1;
+  }
 
   ul {
     list-style-type: none;
@@ -80,6 +94,9 @@ export const StyledNav = styled.nav`
               left: 0;
               z-index: 2;
               border-bottom-right-radius: ${pseudoHeight};
+              @media only screen and (max-width: 600px) {
+                border-bottom-right-radius: 0;
+              }
             }
             &::after {
               content: '';
@@ -92,6 +109,9 @@ export const StyledNav = styled.nav`
               left: 0;
               z-index: 2;
               border-top-right-radius: ${pseudoHeight};
+              @media only screen and (max-width: 600px) {
+                border-top-right-radius: 0;
+              }
             }
           }
         }

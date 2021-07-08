@@ -17,11 +17,12 @@ export const StyledHamburgerButton = styled.button`
   top: 1rem;
   right: 1rem;
   transition: all 0.5s ease-in-out;
+  z-index: 3;
   &.isOpen {
     transform: rotate(360deg);
   }
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 600px) {
     display: none;
   }
 

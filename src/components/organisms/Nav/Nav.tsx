@@ -1,33 +1,40 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import Logo from 'components/atoms/Logo/Logo';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
-import actions from 'utils/store/user/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import actions from 'utils/store/actions';
 import { NavLink } from 'react-router-dom';
+import { RootState } from 'utils/store/store';
 import { StyledNav } from './Nav.styles';
 
 const Nav: FunctionComponent = () => {
+  const isOpen = useSelector(({ menu }: RootState) => menu.isOpen);
+  const dispatch: Dispatch = useDispatch();
+
+  const handleCloseMenu = (): void => {
+    dispatch(actions.toggleMenu());
+  };
   return (
-    <StyledNav>
+    <StyledNav isOpen={isOpen}>
       <Logo text="ORGANIZER" />
       <ul>
         <li>
-          <NavLink activeClassName="active" to="/tasks">
+          <NavLink onClick={handleCloseMenu} activeClassName="active" to="/tasks">
             <span>Zadania</span>
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/history">
+          <NavLink onClick={handleCloseMenu} activeClassName="active" to="/history">
             <span>Historia zadań</span>
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/newtask">
+          <NavLink onClick={handleCloseMenu} activeClassName="active" to="/newtask">
             <span>Nowe zadanie</span>
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/logout">
+          <NavLink onClick={handleCloseMenu} activeClassName="active" to="/logout">
             <span>Wyloguj</span>
           </NavLink>
         </li>

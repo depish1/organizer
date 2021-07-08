@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
-import { redirect } from 'utils/helpers';
+import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'utils/store/store';
