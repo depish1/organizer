@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import Logo from 'components/atoms/Logo/Logo';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,11 @@ const Nav: FunctionComponent = () => {
 
   const handleCloseMenu = (): void => {
     dispatch(actions.toggleMenu());
+  };
+
+  const handleLogout = (): void => {
+    dispatch(actions.toggleMenu());
+    dispatch(actions.logout());
   };
   return (
     <StyledNav isOpen={isOpen}>
@@ -34,7 +39,7 @@ const Nav: FunctionComponent = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink onClick={handleCloseMenu} activeClassName="active" to="/logout">
+          <NavLink onClick={handleLogout} activeClassName="active" to="/signin">
             <span>Wyloguj</span>
           </NavLink>
         </li>

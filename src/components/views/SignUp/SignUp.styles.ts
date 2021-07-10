@@ -5,7 +5,15 @@ export const StyledSignUp = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: calc(100vh - ${({ theme }) => theme.headerHeight});
+  min-height: 100vh;
   padding: 2rem;
   color: ${({ theme }) => theme.colors.black};
+
+  .formError {
+    display: inline-block;
+    width: 100%;
+    color: ${({ theme }) => theme.colors.special};
+    margin-top: 0.5rem;
+    text-align: center;
+  }
 `;

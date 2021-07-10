@@ -54,7 +54,11 @@ const SignIn: FunctionComponent = () => {
       dispatch(actions.login(uid));
       redirect('/tasks', history);
     } catch (error) {
-      setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
+      if (error.code === 'auth/wrong-password') {
+        setAuthError('Nieprawidłowy email lub hasło. Spróbuj ponownie.');
+      } else {
+        setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
+      }
     }
   };
 

@@ -4,7 +4,7 @@ export const LogoContainer = styled.h1`
   display: block;
   font-weight: 400;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 6px;
   position: relative;

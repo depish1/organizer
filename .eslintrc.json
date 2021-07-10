@@ -30,6 +30,7 @@
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
+        "consistent-return": "off",
         "import/extensions": [
             "error",
             "ignorePackages",

@@ -14,5 +14,8 @@ const firebaseConfig = {
 };
 
 const db = firebase.initializeApp(firebaseConfig);
-
 export default db;
+
+export const getTasksReferrence = (uid: string): firebase.firestore.Query<firebase.firestore.DocumentData> => {
+  return db.firestore().collection('task').where('uid', '==', uid);
+};

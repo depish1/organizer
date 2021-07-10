@@ -56,8 +56,8 @@ const SignUp: FunctionComponent = () => {
       dispatch(actions.login(uid));
       redirect('/tasks', history);
     } catch (error) {
-      if (error.code === 'auth/wrong-password') {
-        setAuthError('Nieprawidłowy email lub hasło. Spróbuj ponownie.');
+      if (error.code === 'auth/email-already-in-use') {
+        setAuthError('Istnieje konto o podanym adresie email.');
       } else {
         setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
       }

@@ -5,7 +5,7 @@ export const StyledSignIn = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: calc(100vh - ${({ theme }) => theme.headerHeight});
+  min-height: 100vh;
   padding: 2rem;
 
   span.formError {
