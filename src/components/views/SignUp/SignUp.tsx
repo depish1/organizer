@@ -8,12 +8,12 @@ import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/Redire
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import firebase from 'utils/firebase/config';
+import { auth } from 'utils/firebase/config';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import actions from 'utils/store/actions';
 import { redirect } from 'utils/helpers/other.helpers';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import { StyledSignUp } from './SignUp.styles';
 
@@ -35,9 +35,6 @@ const validationSchema = yup.object().shape({
 const SignUp: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const history = useHistory();
-  useEffect(() => {
-    if (userId) redirect('/tasks', history);
-  }, [userId, history]);
   const [authError, setAuthError] = useState<string | undefined>();
   const dispatch: Dispatch = useDispatch();
   const {
@@ -50,7 +47,7 @@ const SignUp: FunctionComponent = () => {
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
     try {
-      const response = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const response = await auth.createUserWithEmailAndPassword(email, password);
       const { user } = response;
       const { uid } = user!;
       dispatch(actions.login(uid));
@@ -65,6 +62,7 @@ const SignUp: FunctionComponent = () => {
   };
   return (
     <StyledSignUp>
+      {userId && <Redirect to="/tasks" />}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Logo text="ORGANIZER" />
         <Headline text="Zarejestruj się" />

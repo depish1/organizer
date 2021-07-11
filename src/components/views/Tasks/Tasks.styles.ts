@@ -6,6 +6,9 @@ export const StyledTasks = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  padding: 2rem;
   width: 100%;
+  @media only screen and (max-width: 600px) {
+    padding: 2rem 1rem;
+  }
 `;

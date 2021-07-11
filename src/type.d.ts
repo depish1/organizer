@@ -9,15 +9,21 @@ interface ITask {
   uid: string;
   title: string;
   body: string;
-  createDate: Date;
-  expireDate: ExpireDate;
+  createDate: timestamp;
+  expireDate: timestamp;
   isDone: boolean;
   priority: TaskPriority;
 }
-
-type TasksState = {
-  tasks: ITask[];
-};
+interface ITaskToSend {
+  taskId?: string;
+  uid: string;
+  title: string;
+  body: string;
+  createDate: timestamp;
+  expireDate: timestamp;
+  isDone: boolean;
+  priority: TaskPriority;
+}
 
 type UserState = {
   uid: string | null;
@@ -27,12 +33,6 @@ type MenuState = {
   isOpen: boolean;
 };
 
-type TasksAction = {
-  type: string;
-  task?: ITask;
-  taskId?: string;
-  tasks?: ITask[];
-};
 type UserAction = {
   type: string;
   uid?: string;

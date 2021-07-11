@@ -1,18 +1,24 @@
 import React, { FunctionComponent } from 'react';
+import TaskField from 'components/atoms/TaskField/TaskField';
 import { StyledTasksBoard } from './TasksBoard.styles';
 
 interface Props {
-  children?: React.ReactNode;
+  tasks?: ITask[];
   headline: string;
-  emptyMsg: string;
   onClick?: () => void;
 }
 
-const TasksBoard: FunctionComponent<Props> = ({ children, headline, emptyMsg }) => {
+const TasksBoard: FunctionComponent<Props> = ({ headline, tasks }) => {
   return (
     <StyledTasksBoard>
       <h2>{headline}</h2>
-      {children}
+      {tasks ? (
+        <ul>
+          {tasks.map((task) => (
+            <TaskField key={task.taskId} task={task} />
+          ))}
+        </ul>
+      ) : null}
     </StyledTasksBoard>
   );
 };

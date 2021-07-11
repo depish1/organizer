@@ -7,12 +7,12 @@ import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/Redire
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import firebase from 'utils/firebase/config';
+import { auth } from 'utils/firebase/config';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import actions from 'utils/store/actions';
 import { redirect } from 'utils/helpers/other.helpers';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import Logo from 'components/atoms/Logo/Logo';
 import { StyledSignIn } from './SignIn.styles';
@@ -48,7 +48,7 @@ const SignIn: FunctionComponent = () => {
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
     try {
-      const responseUser = await firebase.auth().signInWithEmailAndPassword(email, password);
+      const responseUser = await auth.signInWithEmailAndPassword(email, password);
       const { user } = responseUser;
       const { uid } = user!;
       dispatch(actions.login(uid));
@@ -64,6 +64,7 @@ const SignIn: FunctionComponent = () => {
 
   return (
     <StyledSignIn>
+      {userId && <Redirect to="/tasks" />}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Logo text="ORGANIZER" />
         <Headline text="Zaloguj się" />

@@ -12,10 +12,10 @@ const firebaseConfig = {
   messagingSenderId: '799178968523',
   appId: '1:799178968523:web:ad12f0d8e499c603dbfa4e',
 };
-
-const db = firebase.initializeApp(firebaseConfig);
-export default db;
+firebase.initializeApp(firebaseConfig);
+export const db = firebase.firestore();
+export const auth = firebase.auth();
 
 export const getTasksReferrence = (uid: string): firebase.firestore.Query<firebase.firestore.DocumentData> => {
-  return db.firestore().collection('task').where('uid', '==', uid);
+  return db.collection('tasks').where('uid', '==', uid);
 };

@@ -1,20 +1,12 @@
-import { FunctionComponent, useEffect } from 'react';
-import { redirect } from 'utils/helpers/other.helpers';
-import { useHistory } from 'react-router-dom';
+import React, { FunctionComponent } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'utils/store/store';
 
-const Home: FunctionComponent = (): null => {
-  const uid = useSelector(({ user }: RootState) => user.uid);
-  const history = useHistory();
-  useEffect(() => {
-    if (uid) {
-      redirect('/tasks', history);
-    } else {
-      redirect('/signin', history);
-    }
-  }, [uid, history]);
-  return null;
+const Home: FunctionComponent = () => {
+  const userId = useSelector(({ user }: RootState) => user.uid);
+
+  return <>{userId ? <Redirect to="/tasks" /> : <Redirect to="/signin" />}</>;
 };
 
 export default Home;
