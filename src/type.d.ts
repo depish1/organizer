@@ -25,6 +25,12 @@ interface ITaskToSend {
   priority: TaskPriority;
 }
 
+interface ITaskState {
+  expired: ITask[];
+  today: ITask[];
+  future: ITask[];
+}
+
 type UserState = {
   uid: string | null;
 };

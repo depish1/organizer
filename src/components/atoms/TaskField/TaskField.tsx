@@ -12,7 +12,7 @@ type Props = {
 
 const TaskField: FunctionComponent<Props> = ({ task }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { taskId, uid, title, body, createDate, expireDate, isDone, priority } = task;
+  const { taskId, title, body, createDate, expireDate, priority } = task;
 
   const handleMouseClickTask = (): void => setIsOpen((prevState) => !prevState);
   const handleEnterPressTask = (e: KeyboardEvent): void => {

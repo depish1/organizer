@@ -13,6 +13,7 @@ export const BackgroundWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 
   @media only screen and (max-width: 600px) {
     width: 100%;

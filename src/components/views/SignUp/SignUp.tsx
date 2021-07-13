@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
-import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
 import Logo from 'components/atoms/Logo/Logo';
 import Headline from 'components/atoms/Headline/Headline';
@@ -61,27 +60,25 @@ const SignUp: FunctionComponent = () => {
     }
   };
   return (
-    <StyledSignUp>
+    <StyledSignUp onSubmit={handleSubmit(onSubmit)}>
       {userId && <Redirect to="/tasks" />}
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Logo text="ORGANIZER" />
-        <Headline text="Zarejestruj się" />
-        <FormField id="email" label="Email:">
-          <input {...register('email')} type="text" name="email" id="email" />
-          <span className="error">{errors.email?.message}</span>
-        </FormField>
-        <FormField id="password" label="Hasło:">
-          <input {...register('password')} type="password" name="password" id="password" />
-          <span className="error">{errors.password?.message}</span>
-        </FormField>
-        <FormField id="confirmPassword" label="Potwierdź hasło:">
-          <input {...register('confirmPassword')} type="password" name="confirmPassword" id="confirmPassword" />
-          <span className="error">{errors.confirmPassword?.message}</span>
-        </FormField>
-        <Button />
-        {authError ? <span className="formError">{authError}</span> : null}
-        <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="/signin" />
-      </Form>
+      <Logo text="ORGANIZER" />
+      <Headline text="Zarejestruj się" />
+      <FormField id="email" label="Email:">
+        <input {...register('email')} type="text" name="email" id="email" />
+        <span className="error">{errors.email?.message}</span>
+      </FormField>
+      <FormField id="password" label="Hasło:">
+        <input {...register('password')} type="password" name="password" id="password" />
+        <span className="error">{errors.password?.message}</span>
+      </FormField>
+      <FormField id="confirmPassword" label="Potwierdź hasło:">
+        <input {...register('confirmPassword')} type="password" name="confirmPassword" id="confirmPassword" />
+        <span className="error">{errors.confirmPassword?.message}</span>
+      </FormField>
+      <Button />
+      {authError ? <span className="formError">{authError}</span> : null}
+      <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="/signin" />
     </StyledSignUp>
   );
 };

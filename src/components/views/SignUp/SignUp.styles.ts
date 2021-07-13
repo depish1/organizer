@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-export const StyledSignUp = styled.div`
+export const StyledSignUp = styled.form`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  padding: 2rem;
+  flex-direction: column;
+  width: 400px;
+  max-width: 100%;
+  background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
   .formError {
     display: inline-block;

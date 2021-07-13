@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
-import Form from 'components/organisms/Form/Form';
 import Button from 'components/atoms/Button/Button';
 import Headline from 'components/atoms/Headline/Headline';
 import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/RedirectFormParagraph';
@@ -63,23 +62,21 @@ const SignIn: FunctionComponent = () => {
   };
 
   return (
-    <StyledSignIn>
+    <StyledSignIn onSubmit={handleSubmit(onSubmit)}>
       {userId && <Redirect to="/tasks" />}
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Logo text="ORGANIZER" />
-        <Headline text="Zaloguj się" />
-        <FormField id="email" label="Email:">
-          <input {...register('email')} type="text" id="email" name="email" />
-          <span className="error">{errors.email?.message}</span>
-        </FormField>
-        <FormField id="password" label="Hasło:">
-          <input {...register('password')} id="password" name="password" type="password" />
-          <span className="error">{errors.password?.message}</span>
-        </FormField>
-        <Button />
-        {authError ? <span className="formError">{authError}</span> : null}
-        <RedirectFormParagraph paragraphText="Nie masz jeszcze konta?" linkText="Zarejestruj się" linkPath="/signup" />
-      </Form>
+      <Logo text="ORGANIZER" />
+      <Headline text="Zaloguj się" />
+      <FormField id="email" label="Email:">
+        <input {...register('email')} type="text" id="email" name="email" />
+        <span className="error">{errors.email?.message}</span>
+      </FormField>
+      <FormField id="password" label="Hasło:">
+        <input {...register('password')} id="password" name="password" type="password" />
+        <span className="error">{errors.password?.message}</span>
+      </FormField>
+      <Button />
+      {authError ? <span className="formError">{authError}</span> : null}
+      <RedirectFormParagraph paragraphText="Nie masz jeszcze konta?" linkText="Zarejestruj się" linkPath="/signup" />
     </StyledSignIn>
   );
 };
