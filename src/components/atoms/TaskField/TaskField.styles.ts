@@ -12,8 +12,8 @@ export const StyledTaskField = styled('li')<{
   }
 
   .priority-label {
-    height: 4rem;
-    width: 0.5rem;
+    height: 5rem;
+    width: 0.7rem;
     background-color: ${({ theme, priority }) => theme.colors.priorities[priority]};
   }
 
@@ -34,7 +34,7 @@ export const StyledTaskField = styled('li')<{
     cursor: pointer;
   }
   .headline {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
   }

@@ -4,12 +4,15 @@ export const StyledIconButton = styled('button')<{
   hoverColor: string;
 }>`
   background-color: transparent;
-  width: 4rem;
-  height: 4rem;
-  transition: all 0.5s ease-in-out;
+  width: 3rem;
+  height: 3rem;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
   border: none;
   outline: none;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+
   svg {
     transition: all 0.5s ease-in-out;
     fill: grey;

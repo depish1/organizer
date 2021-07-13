@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledTasksBoard = styled.div`
-  background-color: ${({ theme }) => theme.colors.board};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.board};
+  background-color: ${({ theme }) => theme.colors.black};
   width: 100%;
   max-width: 1000px;
   display: flex;
@@ -13,9 +13,10 @@ export const StyledTasksBoard = styled.div`
   margin: 1rem 0;
   overflow: hidden;
   h2 {
+    font-size: 1.3rem;
     display: block;
     width: 100%;
-    padding: 1rem 2.5rem;
+    padding: 0.7rem 2.5rem;
   }
 
   ul {

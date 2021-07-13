@@ -42,9 +42,9 @@ const Tasks: FunctionComponent = () => {
   return (
     <StyledTasks>
       {!userId && <Redirect to="/signin" />}
-      <TasksBoard headline="Przeterminowane zadania" tasks={tasks?.expired} />
-      <TasksBoard headline="Dzisiejsze zadania" tasks={tasks?.today} />
-      <TasksBoard headline="Przyszłe zadania" tasks={tasks?.future} />
+      <TasksBoard headline="Przeterminowane zadania" emptyMsg="Brak przeterminowanych zadań" tasks={tasks?.expired} />
+      <TasksBoard headline="Dzisiejsze zadania" emptyMsg="Brak zadań na dzisiaj" tasks={tasks?.today} />
+      <TasksBoard headline="Przyszłe zadania" emptyMsg="Brak zaplanowanych zadań" tasks={tasks?.future} />
     </StyledTasks>
   );
 };
