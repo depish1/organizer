@@ -19,3 +19,7 @@ export const auth = firebase.auth();
 export const getTasksReferrence = (uid: string): firebase.firestore.Query<firebase.firestore.DocumentData> => {
   return db.collection('tasks').where('uid', '==', uid);
 };
+
+export const addTask = (data: ITaskToSend): void => {
+  db.collection('tasks').add(data);
+};

@@ -12,11 +12,12 @@ enum headlineSelectors {
 
 interface Props {
   text: string;
+  isTop?: boolean;
   size?: headlineSelectors;
 }
 
-const Headline: FunctionComponent<Props> = ({ text }) => {
-  return <StyledHeadline>{text}</StyledHeadline>;
+const Headline: FunctionComponent<Props> = ({ text, isTop = false }) => {
+  return <StyledHeadline isTop={isTop}>{text}</StyledHeadline>;
 };
 
 export default Headline;

@@ -14,4 +14,8 @@ export const BackgroundWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2rem;
+
+  @media only screen and (max-width: 500px) {
+    padding: 2rem 1rem;
+  }
 `;

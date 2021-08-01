@@ -21,15 +21,17 @@ export const StyledNav = styled.nav<Props>`
   text-align: center;
   padding: 3rem 0;
   font-size: 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     width: 100%;
-    position: absolute;
+    position: fixed;
     transition: all 0.5s ease-in-out;
     padding-top: 5rem;
     left: ${(props) => (props.isOpen ? '0' : '-100%')};
     top: ${(props) => (props.isOpen ? '0' : '-100vh')};
-    z-index: 1;
+    z-index: 2;
+    box-shadow: none;
   }
 
   ul {
@@ -55,65 +57,11 @@ export const StyledNav = styled.nav<Props>`
         }
 
         &.active {
-          background-color: ${({ theme }) => theme.colors.bg};
+          background-color: ${({ theme }) => theme.colors.white};
           color: ${({ theme }) => theme.colors.special};
           font-weight: bold;
           cursor: default;
           position: relative;
-
-          &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: ${pseudoHeight};
-            background-color: ${({ theme }) => theme.colors.bg};
-            top: -${pseudoHeight};
-            left: 0;
-          }
-          &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: ${pseudoHeight};
-            background-color: ${({ theme }) => theme.colors.bg};
-            bottom: -${pseudoHeight};
-            left: 0;
-          }
-
-          span {
-            &::before {
-              content: '';
-              display: block;
-              position: absolute;
-              width: 100%;
-              height: ${pseudoHeight};
-              background-color: ${({ theme }) => theme.colors.black};
-              top: -${pseudoHeight};
-              left: 0;
-              z-index: 2;
-              border-bottom-right-radius: ${pseudoHeight};
-              @media only screen and (max-width: 600px) {
-                border-bottom-right-radius: 0;
-              }
-            }
-            &::after {
-              content: '';
-              display: block;
-              position: absolute;
-              width: 100%;
-              height: ${pseudoHeight};
-              background-color: ${({ theme }) => theme.colors.black};
-              bottom: -${pseudoHeight};
-              left: 0;
-              z-index: 2;
-              border-top-right-radius: ${pseudoHeight};
-              @media only screen and (max-width: 600px) {
-                border-top-right-radius: 0;
-              }
-            }
-          }
         }
       }
     }

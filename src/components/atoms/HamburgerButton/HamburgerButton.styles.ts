@@ -13,7 +13,7 @@ export const StyledHamburgerButton = styled.button`
   transition: background-color 0.4s ease;
   border-radius: 0.5rem;
   margin-right: 1rem;
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
   transition: all 0.5s ease-in-out;
@@ -22,7 +22,7 @@ export const StyledHamburgerButton = styled.button`
     transform: rotate(360deg);
   }
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 800px) {
     display: none;
   }
 

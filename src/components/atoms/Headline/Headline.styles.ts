@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const StyledHeadline = styled.h2`
+export const StyledHeadline = styled('h2')<{
+  isTop: boolean;
+}>`
   display: inline-block;
   width: max-content;
   color: ${({ theme }) => theme.colors.black};
@@ -8,7 +10,7 @@ export const StyledHeadline = styled.h2`
   font-weight: bold;
   position: relative;
   z-index: 1;
-  margin-top: 2rem;
+  margin-top: ${({ isTop }) => (isTop ? '0' : '2rem')};
 
   &::before {
     z-index: -1;

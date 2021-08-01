@@ -14,7 +14,7 @@ import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory, Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import Logo from 'components/atoms/Logo/Logo';
-import { StyledSignIn } from './SignIn.styles';
+import { FormWrapper } from 'components/organisms/FormWrapper/FormWrapper.styles';
 
 interface IFormInputs {
   email: string;
@@ -62,7 +62,7 @@ const SignIn: FunctionComponent = () => {
   };
 
   return (
-    <StyledSignIn onSubmit={handleSubmit(onSubmit)}>
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       {userId && <Redirect to="/tasks" />}
       <Logo text="ORGANIZER" />
       <Headline text="Zaloguj się" />
@@ -74,10 +74,10 @@ const SignIn: FunctionComponent = () => {
         <input {...register('password')} id="password" name="password" type="password" />
         <span className="error">{errors.password?.message}</span>
       </FormField>
-      <Button />
+      <Button text="Zaloguj się" />
       {authError ? <span className="formError">{authError}</span> : null}
       <RedirectFormParagraph paragraphText="Nie masz jeszcze konta?" linkText="Zarejestruj się" linkPath="/signup" />
-    </StyledSignIn>
+    </FormWrapper>
   );
 };
 

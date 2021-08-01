@@ -6,6 +6,8 @@ export const StyledTaskField = styled('li')<{
 }>`
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.colors.bg};
+  background: ${({ theme }) => theme.colors.board};
+  color: ${({ theme }) => theme.colors.black};
   &:last-of-type {
     border-bottom: none;
     margin-bottom: 1rem;
@@ -19,7 +21,6 @@ export const StyledTaskField = styled('li')<{
 
   .top {
     background: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.black};
     display: flex;
     justify-content: space-between;
     align-items: center;

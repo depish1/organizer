@@ -4,8 +4,8 @@ export const StyledIconButton = styled('button')<{
   hoverColor: string;
 }>`
   background-color: transparent;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   border: none;

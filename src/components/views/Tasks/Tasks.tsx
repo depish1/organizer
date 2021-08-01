@@ -10,7 +10,6 @@ import { StyledTasks } from './Tasks.styles';
 const Tasks: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const [tasks, setTasks] = useState<ITaskState>();
-  console.log(tasks);
 
   useEffect((): void | (() => void) => {
     if (userId) {

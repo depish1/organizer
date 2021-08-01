@@ -28,7 +28,8 @@ export const StyledFormField = styled.div`
     }
   }
 
-  input {
+  input,
+  select {
     margin-top: 0.5rem;
     padding: 0.5rem;
     font-size: 1rem;

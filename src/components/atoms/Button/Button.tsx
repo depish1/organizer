@@ -1,8 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { StyledButton } from './Button.styles';
 
-const Button: FunctionComponent = () => {
-  return <StyledButton>Zaloguj się</StyledButton>;
+interface Props {
+  text: string;
+}
+
+const Button: FunctionComponent<Props> = ({ text }) => {
+  return <StyledButton>{text}</StyledButton>;
 };
 
 export default Button;

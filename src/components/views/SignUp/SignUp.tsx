@@ -14,7 +14,7 @@ import actions from 'utils/store/actions';
 import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory, Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
-import { StyledSignUp } from './SignUp.styles';
+import { FormWrapper } from 'components/organisms/FormWrapper/FormWrapper.styles';
 
 interface IFormInputs {
   email: string;
@@ -60,7 +60,7 @@ const SignUp: FunctionComponent = () => {
     }
   };
   return (
-    <StyledSignUp onSubmit={handleSubmit(onSubmit)}>
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       {userId && <Redirect to="/tasks" />}
       <Logo text="ORGANIZER" />
       <Headline text="Zarejestruj się" />
@@ -76,10 +76,10 @@ const SignUp: FunctionComponent = () => {
         <input {...register('confirmPassword')} type="password" name="confirmPassword" id="confirmPassword" />
         <span className="error">{errors.confirmPassword?.message}</span>
       </FormField>
-      <Button />
+      <Button text="Zarejestruj się" />
       {authError ? <span className="formError">{authError}</span> : null}
       <RedirectFormParagraph paragraphText="Masz już konto?" linkText="Zaloguj się" linkPath="/signin" />
-    </StyledSignUp>
+    </FormWrapper>
   );
 };
 

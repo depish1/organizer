@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSignIn = styled.form`
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -11,11 +11,11 @@ export const StyledSignIn = styled.form`
   border-radius: 1rem;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
-  span.formError {
-    display: block;
-    margin-top: 0.5rem;
+  .formError {
+    display: inline-block;
+    width: 100%;
     color: ${({ theme }) => theme.colors.special};
-    font-size: 0.8rem;
+    margin-top: 0.5rem;
     text-align: center;
   }
 `;

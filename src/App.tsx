@@ -18,6 +18,7 @@ const App: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Router>
         <Container>
           {userId ? <HamburgerButton /> : null}
@@ -26,12 +27,12 @@ const App: FunctionComponent = () => {
             <Switch>
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
-              <Route path="/tasks" component={Tasks} />
               <Route path="/newtask" component={NewTask} />
+              <Route path="/tasks" component={Tasks} />
+
               <Route path="/" component={Home} />
             </Switch>
           </BackgroundWrapper>
-          <GlobalStyle />
         </Container>
       </Router>
     </ThemeProvider>
