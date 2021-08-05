@@ -26,9 +26,10 @@ interface ITaskToSend {
 }
 
 interface ITaskState {
-  expired: ITask[];
-  today: ITask[];
-  future: ITask[];
+  expired?: ITask[];
+  today?: ITask[];
+  future?: ITask[];
+  history?: ITask[];
 }
 
 type UserState = {

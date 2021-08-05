@@ -21,13 +21,15 @@ interface IFormInputs {
   priority: TaskPriority;
 }
 
+const yesterday = new Date(Date.now() - 86400000);
+
 const validationSchema = yup.object().shape({
   title: yup.string().required('Email jest wymagany'),
   body: yup.string().required('Hasło jest wymagane'),
   expiredDate: yup
     .date()
     .required('To pole jest wymagane')
-    .min(new Date(), 'Nie masz dodać zadania dla daty z przeszłości')
+    .min(yesterday, 'Nie masz dodać zadania dla daty z przeszłości')
     .typeError('Podaj poprawną datę.'),
   priority: yup.string().required('To pole jest wymagane'),
 });
@@ -65,7 +67,6 @@ const NewTask: FunctionComponent = () => {
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       {!userId && <Redirect to="/signin" />}
-
       <Headline isTop text="Dodaj zadanie" />
       <FormField id="title" label="Tytuł:">
         <input {...register('title')} type="text" name="title" id="title" />

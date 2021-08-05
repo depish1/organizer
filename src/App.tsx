@@ -6,6 +6,7 @@ import SignIn from 'components/views/SignIn/SignIn';
 import SignUp from 'components/views/SignUp/SignUp';
 import Tasks from 'components/views/Tasks/Tasks';
 import Home from 'components/views/Home';
+import History from 'components/views/History/History';
 import NewTask from 'components/views/NewTask/NewTask';
 import Nav from 'components/organisms/Nav/Nav';
 import HamburgerButton from 'components/atoms/HamburgerButton/HamburgerButton';
@@ -29,7 +30,7 @@ const App: FunctionComponent = () => {
               <Route path="/signup" component={SignUp} />
               <Route path="/newtask" component={NewTask} />
               <Route path="/tasks" component={Tasks} />
-
+              <Route path="/history" component={History} />
               <Route path="/" component={Home} />
             </Switch>
           </BackgroundWrapper>
