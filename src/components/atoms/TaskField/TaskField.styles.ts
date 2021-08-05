@@ -8,13 +8,14 @@ export const StyledTaskField = styled('li')<{
   border-bottom: 1px solid ${({ theme }) => theme.colors.bg};
   background: ${({ theme }) => theme.colors.board};
   color: ${({ theme }) => theme.colors.black};
+  
   &:last-of-type {
     border-bottom: none;
     margin-bottom: 1rem;
   }
 
   .priority-label {
-    height: 5rem;
+    align-self: stretch;
     width: 0.7rem;
     background-color: ${({ theme, priority }) => theme.colors.priorities[priority]};
   }
@@ -24,16 +25,10 @@ export const StyledTaskField = styled('li')<{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height:  5rem;
+
   }
 
-  .header {
-    padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    cursor: pointer;
-  }
   .headline {
     font-size: 1.1rem;
     font-weight: bold;
@@ -60,13 +55,25 @@ export const StyledTaskField = styled('li')<{
   }
 
   .top-left {
-    display: grid;
-    grid-template-columns: max-content 1fr;
+    min-height: 100%;
     width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    @media only screen and (max-width: 600px) {
+      padding: .5rem;
+    }
   }
 
   .top-right {
     display: flex;
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      align-self: stretch;
+      justify-content: space-around;
+    }
   }
 
   .body {

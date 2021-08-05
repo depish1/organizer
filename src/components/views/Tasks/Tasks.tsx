@@ -23,6 +23,7 @@ const Tasks: FunctionComponent = () => {
             body: data.body,
             createDate: data.createDate,
             expireDate: data.expireDate,
+            doneDate: data.doneDate,
             isDone: data.isDone,
             priority: data.priority,
           };

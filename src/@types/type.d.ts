@@ -11,6 +11,7 @@ interface ITask {
   body: string;
   createDate: timestamp;
   expireDate: timestamp;
+  doneDate: timestamp | null;
   isDone: boolean;
   priority: TaskPriority;
 }

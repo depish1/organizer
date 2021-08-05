@@ -12,7 +12,7 @@ type Props = {
 
 const TaskField: FunctionComponent<Props> = ({ task }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { taskId, title, body, createDate, expireDate, priority } = task;
+  const { taskId, title, body, createDate, doneDate, expireDate, priority, isDone } = task;
 
   const handleMouseClickTask = (): void => setIsOpen((prevState) => !prevState);
   const handleEnterPressTask = (e: KeyboardEvent): void => {
@@ -21,7 +21,7 @@ const TaskField: FunctionComponent<Props> = ({ task }) => {
   const handleEndTask = async (): Promise<void> => {
     try {
       const taskRef = db.collection('tasks').doc(taskId);
-      await taskRef.update({ isDone: true });
+      await taskRef.update({ isDone: true, doneDate: new Date() });
     } catch (error) {
       console.error('error');
     }
@@ -29,19 +29,25 @@ const TaskField: FunctionComponent<Props> = ({ task }) => {
   const handleEditTask = (): void => {
     console.log('Edytowanie');
   };
+  
 
   return (
-    <StyledTaskField priority={priority} isOpen={isOpen}>
+    <StyledTaskField priority={priority} isOpen={isOpen} >
       <div className="top">
-        <div className="top-left">
-          <div className="priority-label" />
-          <header role="button" tabIndex={0} onClick={handleMouseClickTask} onKeyDown={handleEnterPressTask} className="header">
+      <div className="priority-label" />
+        <div className="top-left" role="button" tabIndex={0} onClick={handleMouseClickTask} onKeyDown={handleEnterPressTask}>
             <h3 className="headline">{title}</h3>
+            {isDone ?
+            <p className="date">
+              Wykonano: <span>{doneDate.toDate().toLocaleDateString()}</span>
+            </p>
+            :
             <p className="date">
               Termin zadania: <span>{expireDate.toDate().toLocaleDateString()}</span>
             </p>
-          </header>
+            }
         </div>
+        {!isDone && 
         <div className="top-right">
           <IconButton handler={handleEditTask} hoverColor="black">
             <IconEdit />
@@ -50,6 +56,7 @@ const TaskField: FunctionComponent<Props> = ({ task }) => {
             <IconDone />
           </IconButton>
         </div>
+        }
       </div>
       <div className="bottom">
         <p className="date">

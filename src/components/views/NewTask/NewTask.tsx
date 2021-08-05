@@ -57,6 +57,7 @@ const NewTask: FunctionComponent = () => {
         priority,
         uid: userId!,
         isDone: false,
+        doneDate: null,
       };
       db.collection('tasks').add(newTaskData);
       redirect('/tasks', history);

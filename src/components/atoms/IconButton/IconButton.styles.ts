@@ -12,6 +12,10 @@ export const StyledIconButton = styled('button')<{
   outline: none;
   border-radius: 20px;
   margin-right: 0.5rem;
+  @media only screen and (max-width: 600px) {
+    width: 3rem;
+    height: 3rem;
+  }
 
   svg {
     transition: all 0.5s ease-in-out;

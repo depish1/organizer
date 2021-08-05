@@ -17,6 +17,9 @@ export const StyledTasksBoard = styled.div`
     display: block;
     width: 100%;
     padding: 0.7rem 2.5rem;
+    @media only screen and (max-width: 600px) {
+      padding: 0.7rem 1.5rem;
+  }
   }
 
   ul {

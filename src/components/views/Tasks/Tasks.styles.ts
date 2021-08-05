@@ -9,6 +9,6 @@ export const StyledTasks = styled.div`
   padding: 2rem;
   width: 100%;
   @media only screen and (max-width: 600px) {
-    padding: 2rem 1rem;
+    padding: 2rem 0;
   }
 `;
