@@ -45,6 +45,7 @@ const SignUp: FunctionComponent = () => {
   });
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
+    dispatch(actions.openLoader());
     try {
       const response = await auth.createUserWithEmailAndPassword(email, password);
       const { user } = response;
@@ -58,6 +59,7 @@ const SignUp: FunctionComponent = () => {
         setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
       }
     }
+    dispatch(actions.closeLoader());
   };
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>

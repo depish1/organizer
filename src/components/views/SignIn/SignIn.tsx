@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import FormField from 'components/atoms/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
+
 import Headline from 'components/atoms/Headline/Headline';
 import RedirectFormParagraph from 'components/atoms/RedirectFormParagraph/RedirectFormParagraph';
 import { useForm } from 'react-hook-form';
@@ -29,13 +30,12 @@ const validationSchema = yup.object().shape({
 const SignIn: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const history = useHistory();
+  const [authError, setAuthError] = useState<string | undefined>();
+  const dispatch: Dispatch = useDispatch();
+
   useEffect(() => {
     if (userId) redirect('/tasks', history);
   }, [userId, history]);
-
-  const [authError, setAuthError] = useState<string | undefined>();
-
-  const dispatch: Dispatch = useDispatch();
 
   const {
     register,
@@ -46,6 +46,7 @@ const SignIn: FunctionComponent = () => {
   });
 
   const onSubmit = async ({ email, password }: IFormInputs): Promise<void> => {
+    dispatch(actions.openLoader());
     try {
       const responseUser = await auth.signInWithEmailAndPassword(email, password);
       const { user } = responseUser;
@@ -59,6 +60,7 @@ const SignIn: FunctionComponent = () => {
         setAuthError('Coś poszło nie tak. Spróbuj ponownie później.');
       }
     }
+    dispatch(actions.closeLoader());
   };
 
   return (

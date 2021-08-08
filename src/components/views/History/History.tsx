@@ -1,17 +1,22 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'utils/store/store';
 import TasksBoard from 'components/organisms/TasksBoard/TasksBoard';
 import { getDoneTasks } from 'utils/firebase/config';
+import { Dispatch } from 'redux';
+
+import actions from 'utils/store/actions';
 import { StyledHistory } from './History.styles';
 
 const Tasks: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const [tasks, setTasks] = useState<ITaskState>();
+  const dispatch: Dispatch = useDispatch();
 
   useEffect((): void | (() => void) => {
     if (userId) {
+      dispatch(actions.openLoader());
       const unsubscribe = getDoneTasks(userId).onSnapshot((snap) => {
         const tasksArr = snap.docs.map((doc) => {
           const data = doc.data();
@@ -32,7 +37,9 @@ const Tasks: FunctionComponent = () => {
         };
 
         setTasks(TasksToState);
+        dispatch(actions.closeLoader());
       });
+
       return () => unsubscribe();
     }
   }, [userId]);

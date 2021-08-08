@@ -6,8 +6,10 @@ import * as yup from 'yup';
 import FormField from 'components/atoms/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
 import Headline from 'components/atoms/Headline/Headline';
+import actions from 'utils/store/actions';
 import { db } from 'utils/firebase/config';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
 import { Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import { FormWrapper } from 'components/organisms/FormWrapper/FormWrapper.styles';
@@ -32,6 +34,8 @@ const Modal: FunctionComponent<ModalProps> = ({ dataset, handleCloseModal, taskI
   const userId = useSelector(({ user }: RootState) => user.uid);
   const [addError, setAddError] = useState<string | undefined>();
 
+  const dispatch: Dispatch = useDispatch();
+
   const modalNode = document.createElement('div');
   useEffect(() => {
     modalContainer!.append(modalNode);
@@ -50,6 +54,7 @@ const Modal: FunctionComponent<ModalProps> = ({ dataset, handleCloseModal, taskI
   });
 
   const onSubmit = async ({ title, body, expireDate, priority }: IFormInputs): Promise<void> => {
+    dispatch(actions.openLoader());
     try {
       const updatedData = {
         title,
@@ -62,6 +67,7 @@ const Modal: FunctionComponent<ModalProps> = ({ dataset, handleCloseModal, taskI
     } catch (error) {
       setAddError('Coś poszło nie tak. Spróbuj ponownie później.');
     }
+    dispatch(actions.closeLoader());
   };
 
   const handleBackgroundClose = (e: React.MouseEvent<HTMLElement>): void => {

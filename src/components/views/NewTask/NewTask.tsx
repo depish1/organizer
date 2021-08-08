@@ -6,11 +6,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { db } from 'utils/firebase/config';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory, Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import { FormWrapper } from 'components/organisms/FormWrapper/FormWrapper.styles';
+import { Dispatch } from 'redux';
+
+import actions from 'utils/store/actions';
 
 interface IFormInputs {
   title: string;
@@ -35,6 +38,7 @@ const validationSchema = yup.object().shape({
 const NewTask: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const history = useHistory();
+  const dispatch: Dispatch = useDispatch();
   const [addError, setAddError] = useState<string | undefined>();
   const {
     register,
@@ -45,6 +49,7 @@ const NewTask: FunctionComponent = () => {
   });
 
   const onSubmit = async ({ title, body, expireDate, priority }: IFormInputs): Promise<void> => {
+    dispatch(actions.openLoader());
     try {
       const newTaskData = {
         title,
@@ -61,6 +66,7 @@ const NewTask: FunctionComponent = () => {
     } catch (error) {
       setAddError('Coś poszło nie tak. Spróbuj ponownie później.');
     }
+    dispatch(actions.closeLoader());
   };
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>

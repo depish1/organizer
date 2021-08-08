@@ -4,6 +4,9 @@ import useModal from 'components/organisms/Modal/useModal';
 import { ReactComponent as IconDone } from 'assets/IconDone.svg';
 import { ReactComponent as IconEdit } from 'assets/IconEdit.svg';
 import { db } from 'utils/firebase/config';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import actions from 'utils/store/actions';
 import { StyledTaskField } from './TaskField.styles';
 
 type Props = {
@@ -15,14 +18,17 @@ const TaskField: FunctionComponent<Props> = ({ task }) => {
   const { Modal, modalOption, handleCloseModal, handleOpenModal } = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const { title, body, createDate, doneDate, expireDate, priority, isDone } = task;
+  const dispatch: Dispatch = useDispatch();
 
   const handleMouseClickTask = (): void => setIsOpen((prevState) => !prevState);
   const handleEnterPressTask = (e: KeyboardEvent): void => {
     if (e.code === 'Enter') setIsOpen((prevState) => !prevState);
   };
   const handleEndTask = async (taskId: string): Promise<void> => {
+    dispatch(actions.openLoader());
     const taskRef = db.collection('tasks').doc(taskId);
     await taskRef.update({ isDone: true, doneDate: new Date() });
+    dispatch(actions.closeLoader());
   };
 
   return (

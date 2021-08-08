@@ -48,12 +48,18 @@ type UserState = {
 type MenuState = {
   isOpen: boolean;
 };
+type LoaderState = {
+  isOpen: boolean;
+};
 
 type UserAction = {
   type: string;
   uid?: string;
 };
 type MenuAction = {
+  type: string;
+};
+type LoaderAction = {
   type: string;
 };
 
