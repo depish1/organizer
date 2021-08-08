@@ -6,9 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { db } from 'utils/firebase/config';
-import { Dispatch } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
-import actions from 'utils/store/actions';
+import { useSelector } from 'react-redux';
 import { redirect } from 'utils/helpers/other.helpers';
 import { useHistory, Redirect } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
@@ -17,7 +15,7 @@ import { FormWrapper } from 'components/organisms/FormWrapper/FormWrapper.styles
 interface IFormInputs {
   title: string;
   body: string;
-  expiredDate: Date;
+  expireDate: Date;
   priority: TaskPriority;
 }
 
@@ -26,7 +24,7 @@ const yesterday = new Date(Date.now() - 86400000);
 const validationSchema = yup.object().shape({
   title: yup.string().required('Email jest wymagany'),
   body: yup.string().required('Hasło jest wymagane'),
-  expiredDate: yup
+  expireDate: yup
     .date()
     .required('To pole jest wymagane')
     .min(yesterday, 'Nie masz dodać zadania dla daty z przeszłości')
@@ -38,7 +36,6 @@ const NewTask: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const history = useHistory();
   const [addError, setAddError] = useState<string | undefined>();
-  const dispatch: Dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -47,12 +44,12 @@ const NewTask: FunctionComponent = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = async ({ title, body, expiredDate, priority }: IFormInputs): Promise<void> => {
+  const onSubmit = async ({ title, body, expireDate, priority }: IFormInputs): Promise<void> => {
     try {
       const newTaskData = {
         title,
         body,
-        expireDate: expiredDate,
+        expireDate,
         createDate: new Date(),
         priority,
         uid: userId!,
@@ -77,9 +74,9 @@ const NewTask: FunctionComponent = () => {
         <input {...register('body')} type="text" name="body" id="body" />
         <span className="error">{errors.body?.message}</span>
       </FormField>
-      <FormField id="expiredDate" label="Termin zadania:">
-        <input {...register('expiredDate')} type="date" name="expiredDate" id="expiredDate" />
-        <span className="error">{errors.expiredDate?.message}</span>
+      <FormField id="expireDate" label="Termin zadania:">
+        <input {...register('expireDate')} type="date" name="expireDate" id="expireDate" />
+        <span className="error">{errors.expireDate?.message}</span>
       </FormField>
       <FormField id="priority" label="Priorytet:">
         <select {...register('priority')} name="priority" id="priority">

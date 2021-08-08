@@ -4,14 +4,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'utils/store/store';
 import TasksBoard from 'components/organisms/TasksBoard/TasksBoard';
 import { getDoneTasks } from 'utils/firebase/config';
-import { getFilteredTasks, filterTasksFunc } from 'utils/helpers/tasks.helpers';
 import { StyledHistory } from './History.styles';
 
 const Tasks: FunctionComponent = () => {
   const userId = useSelector(({ user }: RootState) => user.uid);
   const [tasks, setTasks] = useState<ITaskState>();
 
-    useEffect((): void | (() => void) => {
+  useEffect((): void | (() => void) => {
     if (userId) {
       const unsubscribe = getDoneTasks(userId).onSnapshot((snap) => {
         const tasksArr = snap.docs.map((doc) => {
@@ -32,14 +31,13 @@ const Tasks: FunctionComponent = () => {
           history: tasksArr,
         };
 
-
         setTasks(TasksToState);
       });
       return () => unsubscribe();
     }
   }, [userId]);
 
-    return (
+  return (
     <StyledHistory>
       {!userId && <Redirect to="/signin" />}
       <TasksBoard headline="Wykonane zadania" emptyMsg="Brak wykonanych zadań" tasks={tasks?.history} />

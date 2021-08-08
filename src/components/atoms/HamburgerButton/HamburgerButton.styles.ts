@@ -27,10 +27,10 @@ export const StyledHamburgerButton = styled.button`
   }
 
   span {
-    width: 3rem;
+    width: 2.95rem;
     display: block;
-    height: 0.2rem;
-    background-color: ${({ theme }) => theme.colors.black};
+    height: 0.25rem;
+    background-color: ${({ theme }) => theme.colors.special};
     transition: all 0.5s ease-in-out;
     &.hamburger- {
       &top {

@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import TaskField from 'components/atoms/TaskField/TaskField';
 import EmptyBox from 'components/atoms/EmptyBox/EmptyBox';
+
 import { StyledTasksBoard } from './TasksBoard.styles';
 
 interface Props {

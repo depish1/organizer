@@ -17,10 +17,10 @@ export const db = firebase.firestore();
 export const auth = firebase.auth();
 
 export const getTasksReferrence = (uid: string): firebase.firestore.Query<firebase.firestore.DocumentData> => {
-  return db.collection('tasks').where('uid', '==', uid)
+  return db.collection('tasks').where('uid', '==', uid);
 };
 export const getDoneTasks = (uid: string): firebase.firestore.Query<firebase.firestore.DocumentData> => {
-  return db.collection('tasks').where('uid', '==', uid).where('isDone', '==', true).orderBy('expireDate', 'desc')
+  return db.collection('tasks').where('uid', '==', uid).where('isDone', '==', true).orderBy('expireDate', 'desc');
 };
 
 export const addTask = (data: ITaskToSend): void => {

@@ -33,6 +33,14 @@ interface ITaskState {
   history?: ITask[];
 }
 
+interface IFormInputs {
+  taskId?: string;
+  title: string;
+  body: string;
+  expireDate: Date;
+  priority: TaskPriority;
+}
+
 type UserState = {
   uid: string | null;
 };
@@ -50,3 +58,14 @@ type MenuAction = {
 };
 
 type DispatchType = (args: TasksAction | UserAction) => TasksAction;
+
+interface IModalOptions {
+  isOpen: boolean;
+  id: string | null;
+}
+
+interface ModalProps {
+  dataset: ITask;
+  handleCloseModal: () => void;
+  taskId: string | undefined;
+}
