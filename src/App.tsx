@@ -11,7 +11,7 @@ import NewTask from 'components/views/NewTask/NewTask';
 import Nav from 'components/organisms/Nav/Nav';
 import HamburgerButton from 'components/atoms/HamburgerButton/HamburgerButton';
 import Loader from 'components/atoms/Loader/Loader';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { RootState } from 'utils/store/store';
 import { useSelector } from 'react-redux';
 import { BackgroundWrapper, Container } from './App.styles';

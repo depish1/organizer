@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const spin = keyframes` 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } `;
 
 export const LoaderBackground = styled.div`
   position: fixed;
@@ -17,4 +19,5 @@ export const StyledLoader = styled.svg`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation: ${spin} 4s linear infinite;
 `;

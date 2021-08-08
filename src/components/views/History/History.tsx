@@ -42,7 +42,7 @@ const Tasks: FunctionComponent = () => {
 
       return () => unsubscribe();
     }
-  }, [userId]);
+  }, [userId, dispatch]);
 
   return (
     <StyledHistory>
